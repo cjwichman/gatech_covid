@@ -94,7 +94,7 @@ ggplot(data=cases_bydate.august,
   theme_classic() + 
   theme(text=element_text(family="Courier", size=12),
         axis.text.x = element_text(angle = 30, vjust=1, hjust=1))
-ggsave(filename = paste0(dir, "/daily_cases_august_", date, ".pdf"),
+ggsave(filename = paste0(dir, "/daily_cases_august_", date, ".png"),
        width = 10, height = 6, units = "in")
 
 
@@ -113,7 +113,7 @@ ggplot(data=cases_bydate,
   theme_classic() + 
   theme(text=element_text(family="Courier", size=12),
         axis.text.x = element_text(angle = 30, vjust=1, hjust=1))
-ggsave(filename = paste0(dir, "/daily_cases_", date, ".pdf"),
+ggsave(filename = paste0(dir, "/daily_cases_", date, ".png"),
        width = 10, height = 6, units = "in")
 
 
