@@ -72,9 +72,12 @@ cases_bydate$cases_count.sum[is.na(cases_bydate$cases_count.sum)] <- 0
 
 # subset to august only
 cases_bydate.august <- subset(cases_bydate, date_reported >= "2020-08-01")
+
+
+
+
+# set date
 date <- Sys.Date()
-
-
 
 
 
