@@ -1,12 +1,12 @@
-# gatech_covid
-Processes Georgia Tech coronavirus cases and testing data
+# Georgia Tech coronavirus cases and testing
+### Processes Georgia Tech coronavirus cases and testing data
 
 `script/gatech_covid.R` file scrapes https://health.gatech.edu/coronavirus/health-alerts data to create plots of daily COVID-19 cases and exports data as a .csv file.
 
 `script/gatech_covid_testing.R` file scrapes https://health.gatech.edu/surveillance-testing-program-results data to create plot of cumulative number of surveillance tests conducted and exports data as a .csv file.
 
 
-Outputs:
+### Outputs:
 * Daily new COVID-19 cases since reporting began: [here](https://github.com/cjwichman/gatech_covid/blob/master/figures/daily_cases_2020-08-26.png)
 * Daily new COVID-19 cases for August 2020: [here](https://github.com/cjwichman/gatech_covid/blob/master/figures/daily_cases_august_2020-08-26.png)
 * Cumulative new COVID-19 cases for August 2020: [here](https://github.com/cjwichman/gatech_covid/blob/master/figures/cumulative_tests_2020-08-26.png)
