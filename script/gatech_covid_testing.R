@@ -5,8 +5,8 @@ library('ggplot2')
 
 
 # this code pulls coronavirus data from Georgia Tech's health alerts webpage 
-# (https://health.gatech.edu/coronavirus/health-alerts), complies the data 
-# into a .csv, and plots daily cases.
+# (https://health.gatech.edu/surveillance-testing-program-results), complies the data 
+# into a .csv, and plots cumulative tests
 
 
 rm(list=ls())
@@ -47,7 +47,7 @@ tests$date[tests$date == "August 9-14, 2020"] <- "August 14, 2020"
 tests$date <- as.Date(tests$date, format="%B %d, %Y")
 
 
-# calculate cumulative sum of tests
+# calculate cumulative sum of tests & and no. positive
 tests <- tests[order(tests$date),] # sort dates
 tests$cumulative_tests_processed <- cumsum(tests$tests_processed)
 
