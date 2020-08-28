@@ -61,7 +61,7 @@ ggplot(data=tests,
   geom_point(size=2) + 
   geom_vline(xintercept = as.numeric(as.Date("2020-08-17")), linetype=2) +
   geom_text(x=as.numeric(as.Date("2020-08-17")), y=10500, 
-            label="First day of class ", hjust=1,
+            label="First day of class ", hjust=-0.05,
             family = "Courier") +
   ggtitle(paste0("Cumulative no. of samples tested via Georgia Tech surveillance testing \n(as of ", date, ")")) +
   xlab("Date reported") +
@@ -69,11 +69,11 @@ ggplot(data=tests,
   theme_classic() + 
   theme(text=element_text(family="Courier", size=12),
         axis.text.x = element_text(angle = 30, vjust=1, hjust=1))
-ggsave(filename = paste0(dir, "/figures/cumulative_tests_", date, ".png"),
+ggsave(filename = paste0(dir, "/figures/cumulative_tests.png"),
        width = 10, height = 6, units = "in")
 
 
 
 
 # save testing data as .csv
-write.csv2(tests, paste0(dir, "/data/gatech_tests_", date, ".csv"))
+write.csv2(tests, paste0(dir, "/data/gatech_tests.csv"))
