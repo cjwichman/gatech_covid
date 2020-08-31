@@ -2,6 +2,7 @@ library('rvest')
 library('dplyr')
 library('doBy')
 library('ggplot2')
+library('zoo')
 
 
 # this code pulls coronavirus data from Georgia Tech's health alerts webpage 
@@ -10,8 +11,7 @@ library('ggplot2')
 
 
 rm(list=ls())
-dir <- "~/Dropbox/gatech_covid"
-
+dir <- "~/Documents/GitHub/gatech_covid"
 
 
 # grab data from web
@@ -79,6 +79,8 @@ cases_bydate.august <- subset(cases_bydate, date_reported >= "2020-08-01")
 # set date
 date <- Sys.Date()
 
+# count cases after classes started
+sum.ac <- sum(cases_bydate.august[cases_bydate.august$date_reported >= "2020-08-17", 2])
 
 
 
@@ -87,8 +89,15 @@ ggplot(data=cases_bydate.august,
        aes(x=date_reported, y=cases_count.sum)) +
   geom_line(color="gold", size=1.1) +
   geom_point(size=2) + 
+  geom_line(aes(y=rollmean(cases_count.sum, 7, na.pad=TRUE, align="right")), color="black", linetype=3) +
+  geom_text(x=as.numeric(as.Date("2020-08-24")), y=15, 
+            label="7-day average ", hjust=0,
+            family = "Courier") +
+  geom_text(x=as.numeric(as.Date("2020-08-17")), y=71, 
+            label=paste0("Total since 8/17: ", sum.ac, " "), hjust=1,
+            family = "Courier") +
   geom_vline(xintercept = as.numeric(as.Date("2020-08-17")), linetype=2) +
-  geom_text(x=as.numeric(as.Date("2020-08-17")), y=50, 
+  geom_text(x=as.numeric(as.Date("2020-08-17")), y=75, 
             label="First day of class ", hjust=1,
             family = "Courier") +
   ggtitle(paste0("Daily COVID-19 cases at Georgia Tech \n(as of ", date, ")")) +
@@ -97,7 +106,7 @@ ggplot(data=cases_bydate.august,
   theme_classic() + 
   theme(text=element_text(family="Courier", size=12),
         axis.text.x = element_text(angle = 30, vjust=1, hjust=1))
-ggsave(filename = paste0(dir, "/daily_cases_august_", date, ".png"),
+ggsave(filename = paste0(dir, "/figures/daily_cases_august.png"),
        width = 10, height = 6, units = "in")
 
 
@@ -106,8 +115,12 @@ ggplot(data=cases_bydate,
        aes(x=date_reported, y=cases_count.sum)) +
   geom_line(color="gold", size=1.1) +
   geom_point(size=2) + 
+  geom_line(aes(y=rollmean(cases_count.sum, 7, na.pad=TRUE, align="right")), color="black", linetype=3) +
+  geom_text(x=as.numeric(as.Date("2020-08-24")), y=15, 
+            label="7-day \naverage ", hjust=0,
+            family = "Courier") +
   geom_vline(xintercept = as.numeric(as.Date("2020-08-17")), linetype=2) +
-  geom_text(x=as.numeric(as.Date("2020-08-17")), y=50, 
+  geom_text(x=as.numeric(as.Date("2020-08-17")), y=75, 
             label="First day of class ", hjust=1,
             family = "Courier") +
   ggtitle(paste0("Daily COVID-19 cases at Georgia Tech \n(as of ", date, ")")) +
@@ -116,10 +129,10 @@ ggplot(data=cases_bydate,
   theme_classic() + 
   theme(text=element_text(family="Courier", size=12),
         axis.text.x = element_text(angle = 30, vjust=1, hjust=1))
-ggsave(filename = paste0(dir, "/daily_cases_", date, ".png"),
+ggsave(filename = paste0(dir, "/figures/daily_cases.png"),
        width = 10, height = 6, units = "in")
 
 
 
 # save detailed data as .csv
-write.csv2(cases, paste0(dir, "/gatech_cases_", date, ".csv"))
+write.csv2(cases, paste0(dir,"/data/gatech_cases.csv"))

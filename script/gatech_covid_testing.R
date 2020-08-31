@@ -10,7 +10,7 @@ library('ggplot2')
 
 
 rm(list=ls())
-dir <- "~/Dropbox/gatech_covid"
+dir <- "~/Documents/GitHub/gatech_covid"
 
 
 
