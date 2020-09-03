@@ -31,7 +31,11 @@ total
 tests <- data.frame(matrix(unlist(html.text[5:length(html.text)]), ncol=3, byrow=TRUE))
 names(tests) <- c("date", "tests_positive", "tests_processed")
 tests$tests_positive[tests$tests_positive == "As testing typically does not take place on Sundays, no surveillance samples were processed on 8/24."] <- 0
+tests$tests_positive[tests$tests_positive == "As testing typically does not take place on Saturdays, no surveillance samples were processed on 8/30."] <- 0
+tests$tests_positive[tests$tests_positive == "As testing typically does not take place on Sundays, no surveillance samples were processed on 8/31."] <- 0
 tests$tests_processed[tests$tests_processed == "As testing typically does not take place on Sundays, no surveillance samples were processed on 8/24."] <- 0
+tests$tests_processed[tests$tests_processed == "As testing typically does not take place on Saturdays, no surveillance samples were processed on 8/30."] <- 0
+tests$tests_processed[tests$tests_processed == "As testing typically does not take place on Sundays, no surveillance samples were processed on 8/31."] <- 0
 
 # remove characters and convert to numeric
 tests$tests_positive <- gsub("\n", "", tests$tests_positive)

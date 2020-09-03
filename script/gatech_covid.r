@@ -116,8 +116,11 @@ ggplot(data=cases_bydate,
   geom_line(color="gold", size=1.1) +
   geom_point(size=2) + 
   geom_line(aes(y=rollmean(cases_count.sum, 7, na.pad=TRUE, align="right")), color="black", linetype=3) +
-  geom_text(x=as.numeric(as.Date("2020-08-24")), y=15, 
+  geom_text(x=as.numeric(as.Date("2020-08-24")), y=5, 
             label="7-day \naverage ", hjust=0,
+            family = "Courier") +
+  geom_text(x=as.numeric(as.Date("2020-08-17")), y=71, 
+            label=paste0("Total since 8/17: ", sum.ac, " "), hjust=1,
             family = "Courier") +
   geom_vline(xintercept = as.numeric(as.Date("2020-08-17")), linetype=2) +
   geom_text(x=as.numeric(as.Date("2020-08-17")), y=75, 
