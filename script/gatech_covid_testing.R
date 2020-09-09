@@ -64,7 +64,7 @@ ggplot(data=tests,
   geom_line(color="blue", size=1.1) +
   geom_point(size=2) + 
   geom_vline(xintercept = as.numeric(as.Date("2020-08-17")), linetype=2) +
-  geom_text(x=as.numeric(as.Date("2020-08-17")), y=10500, 
+  geom_text(x=as.numeric(as.Date("2020-08-17")), y=3000, 
             label="First day of class ", hjust=-0.05,
             family = "Courier") +
   ggtitle(paste0("Cumulative no. of samples tested via Georgia Tech surveillance testing \n(as of ", date, ")")) +

@@ -28,9 +28,8 @@ total
 
 
 
-
 # grab "current month" summary
-cases <- data.frame(matrix(html.text[4:length(html.text)], ncol=4, byrow=TRUE))
+cases <- data.frame(matrix(html.text[5:length(html.text)], ncol=4, byrow=TRUE))
 names(cases) <- c("date_reported", "position", "date_last_on_campus", "campus_impact")
 # remove headers buried in the table
 cases <- subset(cases, date_reported!="\n\t\t\t\tDate Reported\n\t\t\t\t")
